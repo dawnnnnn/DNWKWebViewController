@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id<WKNavigationDelegate> dnNavigationDelegate;
 
 @property (nonatomic, strong) UIColor *toolbarTintColor;
+@property (nonatomic, strong) UIColor *progressTintColor;
 
 - (instancetype)initWithAddress:(NSString *)urlString;
 - (instancetype)initWithURL:(NSURL *)pageURL;

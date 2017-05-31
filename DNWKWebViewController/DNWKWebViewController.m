@@ -12,6 +12,8 @@
 
 #import <WebKit/WebKit.h>
 
+static CGFloat const progressBarHeight      = 2.0f;
+
 @interface DNWKWebViewController () <WKUIDelegate, WKNavigationDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
@@ -22,6 +24,8 @@
 @property (nonatomic, strong) UIBarButtonItem *refreshBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *stopBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *actionBarButtonItem;
+
+@property (nonatomic, strong) UIProgressView *progressView;
 
 @property (nonatomic, strong) NSURLRequest *request;
 
@@ -60,6 +64,8 @@
     [super viewDidLoad];
     [self updateToolbarItems];
     [self updateNavigationbar];
+    [self.navigationController.navigationBar addSubview:self.progressView];
+    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,6 +92,10 @@
     _refreshBarButtonItem = nil;
     _stopBarButtonItem = nil;
     _actionBarButtonItem = nil;
+}
+
+- (void)dealloc {
+    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
 }
 
 #pragma mark - Navigationbar
@@ -199,6 +209,26 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+#pragma mark - Observe
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        if (object == self.webView) {
+            [self.progressView setAlpha:1.0f];
+            [self.progressView setProgress:self.webView.estimatedProgress];
+            if (self.webView.estimatedProgress >= 1.0f) {
+                [UIView animateWithDuration:0.3 delay:0.3 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    [self.progressView setAlpha:0.0f];
+                } completion:^(BOOL finished) {
+                    [self.progressView setProgress:0.0f];
+                }];
+            }
+        } else {
+            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        }
+    }
+}
+
 #pragma mark - WKUIDelegate
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
@@ -279,7 +309,6 @@
     }
 }
 
-
 #pragma mark - Getter
 
 - (WKWebView *)webView {
@@ -335,6 +364,16 @@
     return _actionBarButtonItem;
 }
 
-
+- (UIProgressView *)progressView {
+    if (_progressView == nil) {
+        CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
+        CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height, navigationBarBounds.size.width, progressBarHeight);
+        _progressView = [[UIProgressView alloc] initWithFrame:barFrame];
+        _progressView.trackTintColor = [UIColor clearColor];
+        _progressView.progressTintColor = self.progressTintColor;
+        _progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    }
+    return _progressView;
+}
 
 @end
