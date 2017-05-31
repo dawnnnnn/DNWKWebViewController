@@ -59,6 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self updateToolbarItems];
+    [self updateNavigationbar];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,6 +85,20 @@
     _refreshBarButtonItem = nil;
     _stopBarButtonItem = nil;
     _actionBarButtonItem = nil;
+}
+
+#pragma mark - Navigationbar
+
+- (void)updateNavigationbar {
+    if ([self.navigationController.viewControllers.firstObject isKindOfClass:[DNWKWebViewController class]]) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            self.navigationItem.leftBarButtonItem = doneButton;
+        } else {
+            self.navigationItem.rightBarButtonItem = doneButton;
+        }
+    }
 }
 
 #pragma mark - Toolbar
@@ -179,6 +194,10 @@
             [self presentViewController:activityController animated:YES completion:nil];
         }
     }
+}
+
+- (void)doneButtonClicked:(id)sùender {
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - WKUIDelegate
