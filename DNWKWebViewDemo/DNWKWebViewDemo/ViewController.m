@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DNWKWebViewController.h"
 
 @interface ViewController ()
 
@@ -16,9 +17,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0, 100, 375, 80)];
+    button.backgroundColor = [UIColor orangeColor];
+    [button setTitle:@"pushWebView" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(pushWebViewController) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
 }
 
+- (void)pushWebViewController {
+    NSURL *URL = [NSURL URLWithString:@"http://sf.gg"];
+    DNWKWebViewController *webViewController = [[DNWKWebViewController alloc] initWithURL:URL];
+    webViewController.toolbarTintColor = [UIColor blueColor];
+    [self.navigationController pushViewController:webViewController animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

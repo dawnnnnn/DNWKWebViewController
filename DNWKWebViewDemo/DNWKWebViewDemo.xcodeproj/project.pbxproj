@@ -16,6 +16,10 @@
 		F4FF89B81ED9AF7100D93985 /* DNWKWebViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FF89B71ED9AF7100D93985 /* DNWKWebViewDemoTests.m */; };
 		F4FF89C31ED9AF7100D93985 /* DNWKWebViewDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FF89C21ED9AF7100D93985 /* DNWKWebViewDemoUITests.m */; };
 		F4FF89D31ED9BBFF00D93985 /* DNWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FF89D21ED9BBFF00D93985 /* DNWKWebViewController.m */; };
+		F4FF89D71EDE80BE00D93985 /* DNWKWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FF89D61EDE80BE00D93985 /* DNWKWebViewControllerActivity.m */; };
+		F4FF89DC1EDE81D000D93985 /* DNWKWebViewControllerActivityChrome.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FF89DB1EDE81D000D93985 /* DNWKWebViewControllerActivityChrome.m */; };
+		F4FF89DF1EDE81E100D93985 /* DNWKWebViewControllerActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FF89DE1EDE81E100D93985 /* DNWKWebViewControllerActivitySafari.m */; };
+		F4FF89E11EDE8CFB00D93985 /* DNWKWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F4FF89E01EDE8CFB00D93985 /* DNWKWebViewController.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,13 @@
 		F4FF89C41ED9AF7100D93985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4FF89D11ED9BBFF00D93985 /* DNWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNWKWebViewController.h; path = ../../DNWKWebViewController/DNWKWebViewController.h; sourceTree = "<group>"; };
 		F4FF89D21ED9BBFF00D93985 /* DNWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNWKWebViewController.m; path = ../../DNWKWebViewController/DNWKWebViewController.m; sourceTree = "<group>"; };
+		F4FF89D51EDE80BE00D93985 /* DNWKWebViewControllerActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNWKWebViewControllerActivity.h; path = ../../DNWKWebViewController/UIActivities/DNWKWebViewControllerActivity.h; sourceTree = "<group>"; };
+		F4FF89D61EDE80BE00D93985 /* DNWKWebViewControllerActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNWKWebViewControllerActivity.m; path = ../../DNWKWebViewController/UIActivities/DNWKWebViewControllerActivity.m; sourceTree = "<group>"; };
+		F4FF89DA1EDE81D000D93985 /* DNWKWebViewControllerActivityChrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNWKWebViewControllerActivityChrome.h; path = ../../DNWKWebViewController/UIActivities/Chrome/DNWKWebViewControllerActivityChrome.h; sourceTree = "<group>"; };
+		F4FF89DB1EDE81D000D93985 /* DNWKWebViewControllerActivityChrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNWKWebViewControllerActivityChrome.m; path = ../../DNWKWebViewController/UIActivities/Chrome/DNWKWebViewControllerActivityChrome.m; sourceTree = "<group>"; };
+		F4FF89DD1EDE81E100D93985 /* DNWKWebViewControllerActivitySafari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DNWKWebViewControllerActivitySafari.h; path = ../../DNWKWebViewController/UIActivities/Safari/DNWKWebViewControllerActivitySafari.h; sourceTree = "<group>"; };
+		F4FF89DE1EDE81E100D93985 /* DNWKWebViewControllerActivitySafari.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DNWKWebViewControllerActivitySafari.m; path = ../../DNWKWebViewController/UIActivities/Safari/DNWKWebViewControllerActivitySafari.m; sourceTree = "<group>"; };
+		F4FF89E01EDE8CFB00D93985 /* DNWKWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = DNWKWebViewController.bundle; path = ../../DNWKWebViewController/DNWKWebViewController.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +160,39 @@
 			children = (
 				F4FF89D11ED9BBFF00D93985 /* DNWKWebViewController.h */,
 				F4FF89D21ED9BBFF00D93985 /* DNWKWebViewController.m */,
+				F4FF89D41EDE807E00D93985 /* UIActivities */,
 			);
 			name = DNWKWebViewController;
+			sourceTree = "<group>";
+		};
+		F4FF89D41EDE807E00D93985 /* UIActivities */ = {
+			isa = PBXGroup;
+			children = (
+				F4FF89E01EDE8CFB00D93985 /* DNWKWebViewController.bundle */,
+				F4FF89D91EDE819C00D93985 /* Chrome */,
+				F4FF89D81EDE814900D93985 /* Safari */,
+				F4FF89D51EDE80BE00D93985 /* DNWKWebViewControllerActivity.h */,
+				F4FF89D61EDE80BE00D93985 /* DNWKWebViewControllerActivity.m */,
+			);
+			name = UIActivities;
+			sourceTree = "<group>";
+		};
+		F4FF89D81EDE814900D93985 /* Safari */ = {
+			isa = PBXGroup;
+			children = (
+				F4FF89DD1EDE81E100D93985 /* DNWKWebViewControllerActivitySafari.h */,
+				F4FF89DE1EDE81E100D93985 /* DNWKWebViewControllerActivitySafari.m */,
+			);
+			name = Safari;
+			sourceTree = "<group>";
+		};
+		F4FF89D91EDE819C00D93985 /* Chrome */ = {
+			isa = PBXGroup;
+			children = (
+				F4FF89DA1EDE81D000D93985 /* DNWKWebViewControllerActivityChrome.h */,
+				F4FF89DB1EDE81D000D93985 /* DNWKWebViewControllerActivityChrome.m */,
+			);
+			name = Chrome;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4FF89AD1ED9AF7100D93985 /* LaunchScreen.storyboard in Resources */,
+				F4FF89E11EDE8CFB00D93985 /* DNWKWebViewController.bundle in Resources */,
 				F4FF89AA1ED9AF7100D93985 /* Assets.xcassets in Resources */,
 				F4FF89A81ED9AF7100D93985 /* Main.storyboard in Resources */,
 			);
@@ -286,10 +329,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FF89DC1EDE81D000D93985 /* DNWKWebViewControllerActivityChrome.m in Sources */,
 				F4FF89A51ED9AF7100D93985 /* ViewController.m in Sources */,
+				F4FF89DF1EDE81E100D93985 /* DNWKWebViewControllerActivitySafari.m in Sources */,
 				F4FF89A21ED9AF7100D93985 /* AppDelegate.m in Sources */,
 				F4FF899F1ED9AF7100D93985 /* main.m in Sources */,
 				F4FF89D31ED9BBFF00D93985 /* DNWKWebViewController.m in Sources */,
+				F4FF89D71EDE80BE00D93985 /* DNWKWebViewControllerActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,9 +485,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DNWKWebViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redmist.DNWKWebViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -450,9 +498,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = DNWKWebViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.redmist.DNWKWebViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -521,6 +571,7 @@
 				F4FF89C91ED9AF7100D93985 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4FF89CA1ED9AF7100D93985 /* Build configuration list for PBXNativeTarget "DNWKWebViewDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +580,7 @@
 				F4FF89CC1ED9AF7100D93985 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4FF89CD1ED9AF7100D93985 /* Build configuration list for PBXNativeTarget "DNWKWebViewDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +589,7 @@
 				F4FF89CF1ED9AF7100D93985 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
