@@ -34,14 +34,14 @@
 }
 
 - (void)pushWebViewController {
-    NSURL *URL = [NSURL URLWithString:@"http://sf.gg"];
+    NSURL *URL = [NSURL URLWithString:@"http://oopser.com"];
     DNWKWebViewController *webViewController = [[DNWKWebViewController alloc] initWithURL:URL];
     webViewController.toolbarTintColor = [UIColor orangeColor];
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 - (void)presentWebViewController {
-    NSURL *URL = [NSURL URLWithString:@"http://baidu.com"];
+    NSURL *URL = [NSURL URLWithString:@"http://oopser.com"];
     DNWKWebViewController *webViewController = [[DNWKWebViewController alloc] initWithURL:URL];
     webViewController.toolbarTintColor = [UIColor orangeColor];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewController];
