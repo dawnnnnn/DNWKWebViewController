@@ -79,6 +79,7 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    
     self.webView = nil;
     _backBarButtonItem = nil;
     _forwardBarButtonItem = nil;
@@ -183,14 +184,12 @@
             
 #ifdef __IPHONE_8_0
             if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1 &&
-                UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-            {
+                UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
                 UIPopoverPresentationController *ctrl = activityController.popoverPresentationController;
                 ctrl.sourceView = self.view;
                 ctrl.barButtonItem = sender;
             }
 #endif
-            
             [self presentViewController:activityController animated:YES completion:nil];
         }
     }
@@ -203,6 +202,7 @@
 #pragma mark - WKUIDelegate
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
+    
     if (self.dnUIDelegate && [self.dnUIDelegate respondsToSelector:@selector(webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:completionHandler:)]) {
         [self.dnUIDelegate webView:webView runJavaScriptAlertPanelWithMessage:message initiatedByFrame:frame completionHandler:completionHandler];
     }
@@ -212,31 +212,38 @@
 #pragma mark - WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self updateToolbarItems];
+    
     if (self.dnNavigationDelegate && [self.dnNavigationDelegate respondsToSelector:@selector(webView:didStartProvisionalNavigation:)]) {
         [self.dnNavigationDelegate webView:webView didStartProvisionalNavigation:navigation];
     }
 }
 
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+    
     if (self.dnNavigationDelegate && [self.dnNavigationDelegate respondsToSelector:@selector(webView:didCommitNavigation:)]) {
         [self.dnNavigationDelegate webView:webView didCommitNavigation:navigation];
     }
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self updateToolbarItems];
     self.title = self.webView.title;
+    
     if (self.dnNavigationDelegate && [self.dnNavigationDelegate respondsToSelector:@selector(webView:didFinishNavigation:)]) {
         [self.dnNavigationDelegate webView:webView didFinishNavigation:navigation];
     }
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self updateToolbarItems];
+    
     if (self.dnNavigationDelegate && [self.dnNavigationDelegate respondsToSelector:@selector(webView:didFailNavigation:withError:)]) {
         [self.dnNavigationDelegate webView:webView didFailNavigation:navigation withError:error];
     }
@@ -245,8 +252,10 @@
 #pragma mark -- WebView Redirect
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self updateToolbarItems];
+    
     if (self.dnNavigationDelegate && [self.dnNavigationDelegate respondsToSelector:@selector(webView:decidePolicyForNavigationAction:decisionHandler:)]) {
         [self.dnNavigationDelegate webView:webView decidePolicyForNavigationAction:navigationAction decisionHandler:decisionHandler];
     } else {
@@ -255,6 +264,7 @@
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+    
     if (self.dnNavigationDelegate && [self.dnNavigationDelegate respondsToSelector:@selector(webView:decidePolicyForNavigationResponse:decisionHandler:)]) {
         [self.dnNavigationDelegate webView:webView decidePolicyForNavigationResponse:navigationResponse decisionHandler:decisionHandler];
     } else {
@@ -263,6 +273,7 @@
 }
 
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(WKNavigation *)navigation {
+    
     if (self.dnNavigationDelegate && [self.dnNavigationDelegate respondsToSelector:@selector(webView:didReceiveServerRedirectForProvisionalNavigation:)]) {
         [self.dnNavigationDelegate webView:webView didReceiveServerRedirectForProvisionalNavigation:navigation];
     }
