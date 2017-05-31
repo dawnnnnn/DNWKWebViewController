@@ -1,5 +1,9 @@
 # DNWKWebViewController
 
+[![Version](https://img.shields.io/cocoapods/v/DNWKWebViewController.svg?style=flat-square)](http://cocoadocs.org/docsets/DNWKWebViewController)
+[![License](https://img.shields.io/cocoapods/l/DNWKWebViewController.svg?style=flat-square)](http://cocoadocs.org/docsets/DNWKWebViewController)
+[![Platform](https://img.shields.io/cocoapods/p/DNWKWebViewController.svg?style=flat-square)](http://cocoadocs.org/docsets/DNWKWebViewController)
+
 DNWKWebViewController is a simple inline browser for your app.
 
 This library is derived from [SVWebViewController](https://github.com/samvermette/SVWebViewController), which tries to build a webview controller with WKWebView.
