@@ -97,6 +97,8 @@ static CGFloat const progressBarHeight      = 2.0f;
 
 - (void)dealloc {
     [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+    [self.webView stopLoading];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 #pragma mark - Navigationbar
