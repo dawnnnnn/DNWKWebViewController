@@ -13,7 +13,11 @@
 
 #import <WebKit/WebKit.h>
 
-static CGFloat const progressBarHeight      = 2.0f;
+static CGFloat const kProgressBarHeight         = 2.0f;
+static CGFloat const kiPadToolbarWidth          = 250.f;
+static CGFloat const kiPadToolbarHeight         = 44.f;
+static CGFloat const kiPadFixedSpace            = 35.f;
+static CGFloat const kBarButtonItemWidth        = 18.f;
 
 @interface DNWKWebViewController () <WKUIDelegate, WKNavigationDelegate>
 
@@ -128,8 +132,7 @@ static CGFloat const progressBarHeight      = 2.0f;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        CGFloat toolbarWidth = 250.0f;
-        fixedSpace.width = 35.0f;
+        fixedSpace.width = kiPadFixedSpace;
         
         NSArray *items = [NSArray arrayWithObjects:
                           fixedSpace,
@@ -142,7 +145,7 @@ static CGFloat const progressBarHeight      = 2.0f;
                           self.actionBarButtonItem,
                           nil];
         
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, toolbarWidth, 44.0f)];
+        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kiPadToolbarWidth, kiPadToolbarHeight)];
         toolbar.items = items;
         toolbar.barStyle = self.navigationController.navigationBar.barStyle;
         self.navigationController.toolbar.tintColor = self.toolbarTintColor;
@@ -334,7 +337,7 @@ static CGFloat const progressBarHeight      = 2.0f;
 - (UIBarButtonItem *)backBarButtonItem {
     if (_backBarButtonItem == nil) {
         _backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"DNWKWebViewController.bundle/DNWKWebViewControllerBack"] style:UIBarButtonItemStylePlain target:self action:@selector(goBackClicked:)];
-        _backBarButtonItem.width = 18.0f;
+        _backBarButtonItem.width = kBarButtonItemWidth;
     }
     return _backBarButtonItem;
 }
@@ -342,7 +345,7 @@ static CGFloat const progressBarHeight      = 2.0f;
 - (UIBarButtonItem *)forwardBarButtonItem {
     if (_forwardBarButtonItem == nil) {
         _forwardBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"DNWKWebViewController.bundle/DNWKWebViewControllerNext"] style:UIBarButtonItemStylePlain target:self action:@selector(goForwardClicked:)];
-        _forwardBarButtonItem.width = 18.0f;
+        _forwardBarButtonItem.width = kBarButtonItemWidth;
     }
     return _forwardBarButtonItem;
 }
@@ -371,7 +374,7 @@ static CGFloat const progressBarHeight      = 2.0f;
 - (UIProgressView *)progressView {
     if (_progressView == nil) {
         CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
-        CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height, navigationBarBounds.size.width, progressBarHeight);
+        CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height, navigationBarBounds.size.width, kProgressBarHeight);
         _progressView = [[UIProgressView alloc] initWithFrame:barFrame];
         _progressView.trackTintColor = [UIColor clearColor];
         _progressView.progressTintColor = self.progressTintColor;
