@@ -98,6 +98,7 @@ static CGFloat const progressBarHeight      = 2.0f;
 - (void)dealloc {
     [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
     [self.webView stopLoading];
+    [self.progressView removeFromSuperview];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
