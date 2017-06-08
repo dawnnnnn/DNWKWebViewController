@@ -19,7 +19,7 @@ static CGFloat const kiPadToolbarHeight         = 44.f;
 static CGFloat const kiPadFixedSpace            = 35.f;
 static CGFloat const kBarButtonItemWidth        = 18.f;
 
-@interface DNWKWebViewController () <WKUIDelegate, WKNavigationDelegate>
+@interface DNWKWebViewController () <WKUIDelegate, WKNavigationDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) WKWebViewConfiguration *webViewConfiguration;
@@ -100,8 +100,8 @@ static CGFloat const kBarButtonItemWidth        = 18.f;
 }
 
 - (void)dealloc {
-    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
-    [self.webView stopLoading];
+    [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
+    [_webView stopLoading];
     [self.progressView removeFromSuperview];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
@@ -316,6 +316,12 @@ static CGFloat const kBarButtonItemWidth        = 18.f;
     }
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    scrollView.decelerationRate = UIScrollViewDecelerationRateNormal;
+}
+
 #pragma mark - Getter
 
 - (WKWebView *)webView {
@@ -323,6 +329,7 @@ static CGFloat const kBarButtonItemWidth        = 18.f;
         _webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:self.webViewConfiguration];
         _webView.UIDelegate = self;
         _webView.navigationDelegate = self;
+        _webView.scrollView.delegate = self;
     }
     return _webView;
 }

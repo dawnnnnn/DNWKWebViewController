@@ -34,7 +34,7 @@
 }
 
 - (void)pushWebViewController {
-    NSURL *URL = [NSURL URLWithString:@"http://oopser.com"];
+    NSURL *URL = [NSURL URLWithString:@"http://sf.gg"];
     DNWKWebViewController *webViewController = [[DNWKWebViewController alloc] initWithURL:URL];
     webViewController.toolbarTintColor = [UIColor orangeColor];
     [self.navigationController pushViewController:webViewController animated:YES];

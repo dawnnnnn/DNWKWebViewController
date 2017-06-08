@@ -49,6 +49,16 @@ DNWKWebViewController *webViewController = [[DNWKWebViewController alloc] initWi
 
 Starting in iOS 6 Apple uses `UIActivity` to let you show additional sharing methods in share sheets. `DNWKWebViewController` comes with "Open in Safari" and "Open in Chrome" activities. You can easily add your own activity by subclassing `DNWKWebViewControllerActivity` which takes care of a few things automatically for you. Have a look at the Safari and Chrome activities for implementation examples. Feel free to send it as a pull request once you're done!
 
+## Change Log
+- 0.0.3 :
+	- Fix bugs
+	- update scroll decelerationRate
+- 0.0.2 : 
+	- Remove progressView when dealloc
+- 0.0.1 : 
+	- Released first version
+
+
 ## License
 
 DNWKWebViewController is available under the MIT license. See the LICENSE file for more info.
