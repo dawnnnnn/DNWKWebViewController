@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DNWKWebViewController"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "A simple inline browser for your iOS app"
   s.description  = <<-DESC
                       A simple inline browser for your iOS app.
