@@ -102,6 +102,9 @@ static CGFloat const kBarButtonItemWidth        = 18.f;
 - (void)dealloc {
     [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
     [_webView stopLoading];
+    _webView.navigationDelegate = nil;
+    _webView.scrollView.delegate = nil;
+    _webView.UIDelegate = nil;
     [self.progressView removeFromSuperview];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
